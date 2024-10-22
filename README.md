@@ -1,21 +1,15 @@
 # Diff-BGM: A Diffusion Model for Video Background Music Generation
 
-Official implementation for CVPR 2024 paper: **Diff-BGM: A Diffusion Model for Video Background Music Generation**
-
-By Sizhe Li, Yiming Qin, Minghang Zheng, Xin Jin, Yang Liu.
-
-![](./Diff-BGM.png)
-
-- Thanks for the code structure from [Polyffusion](https://github.com/aik2mlj/polyffusion)
+Implementation
 
 ## 1. Installation
 
 ``` shell
 pip install -r requirements.txt
 pip install -e diffbgm
-pip isntall -e diffbgm/mir_eval
+pip install -e diffbgm/mir_eval
 ```
-
+Note : mir-eval file is not present in this repo, this has to be downloaded from [here](https://github.com/aik2mlj/polyffusion).
 ## 2. Training
 
 ### Preparations
@@ -32,6 +26,7 @@ We also provide the original captions [here](https://drive.google.com/drive/fold
 ```shell
 python diffbgm/main.py --model ldm_chd8bar --output_dir [output_dir]
 ```
+This code is not working in the original repo, I have resolved multiple errors in my local system and local environment. I made the code work but in the first epoch it is throwing an error related to ran out of input (while loading the pickel file, which is again not present in original repo, i have added it).
 
 ## 3. Inference
 
@@ -40,6 +35,7 @@ Please use the following message to generate music for videos in BGM909.
 ```shell
 python diffbgm/inference_sdf.py --model_dir=[model_dir] --uncond_scale=5.
 ```
+This code is working but it is running over multiple folders, so it is giving inference for only files present in repo (code is set also for other folders but it is not present in repo or any other drive of the author), but for present folders, I am getting the inference result in diffbgm/exp folder.
 
 ## 4. Test
 
@@ -47,22 +43,11 @@ To reproduce the metrics in our original paper, please refer to `/diffbgm/test.i
 
 | Backbone | PCHE | GPS | SI | P@20 | Weights|
 | -------- | ---- | --- | -- | ---- | ------ | 
-| Diff-BGM (original) | 2.840 | 0.601 | 0.521 | 44.10 | [weights](https://drive.google.com/file/d/1QzmJjNsSDQKpAEATD3XbSZalI1AULx1O/view?usp=sharing) |
+| Diff-BGM (original) | 2.840 | 0.601 | 0.521 | 44.10 | [weights](https://drive.google.com/file/d/1QzmJjNsSDQKpAEATD3XbSZalI1AULx1O/view?usp=sharing) |  // this is weight.pt file
 | Diff-BGM (only visual) | 2.835 | 0.514 | 0.396 | 43.20 | [weights](https://drive.google.com/file/d/1mtX24RLViblmSBbwx1WPqzQnSLnat5i3/view?usp=sharing) |
 | Diff-BGM (w/o SAC-Att) | 2.721 | 0.789 | 0.523 | 38.47 | [weights](https://drive.google.com/file/d/1q39Azhty0lznhfdVMWxplUkYN7CE0VmA/view?usp=sharing) |
 
 We provide our generation results [here](https://drive.google.com/drive/folders/1kYQLAmw8-zyBx43RW7aUSE8VXcFDxkez?usp=sharing).
-
-## 5. Make a Demo by yourself!
-
-After generating a piece of music, you can use the following commands to generate a video.
-
-```shell
-sudo apt-get install ffmpeg fluidsynth
-fluidsynth -i <SoundFont file> <midi file> -F <wav file>
-ffmpeg -i <wav file> -b:a <bit rate> <mp3 file>
-ffmpeg -i <video file> -i <mp3 file> -c:a aac -map 0:v:0 -map 1:a:0 <output file>
-```
 
 See our [demo](./video.mp4)!
 
