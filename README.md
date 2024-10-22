@@ -13,7 +13,7 @@ Note : mir-eval file is not present in this repo, this has to be downloaded from
 ## 2. Training
 
 ### Preparations
-
+// Please download this files, as they are very big to be uploaded in repository.
 1. The extracted features of the dataset POP909 can be accessed [here](https://yukisaki-my.sharepoint.com/:u:/g/personal/aik2_yukisaki_io/EdUovlRZvExJrGatAR8BlTsBDC8udJiuhnIimPuD2PQ3FQ?e=WwD7Dl). Please put it under `/data/` after extraction.
 
 2. The extracted features of the dataset BGM909 can be accessed [here](https://drive.google.com/drive/folders/1zRNROuTxVNhJfqeyqRzPoIY60z5zLaHK?usp=sharing). Please put them under `/data/bgm909/` after extraction. We use [VideoCLIP](https://github.com/CryhanFang/CLIP2Video) to extract the video feature, use [BLIP](https://github.com/salesforce/BLIP) to gain the video caption then use [Bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) as the language encoder and use [TransNetV2](https://github.com/soCzech/TransNetV2) to capture the shot.   
@@ -26,7 +26,7 @@ We also provide the original captions [here](https://drive.google.com/drive/fold
 ```shell
 python diffbgm/main.py --model ldm_chd8bar --output_dir [output_dir]
 ```
-This code is not working in the original repo, I have resolved multiple errors in my local system and local environment. I made the code work but in the first epoch it is throwing an error related to ran out of input (while loading the pickel file, which is again not present in original repo, i have added it).
+This code is not working in the original repo, I have resolved multiple errors in my local system and local environment. I made the code work but in the first epoch it is throwing an error related to ran out of input (while loading the pickel file, which is again not present in original repo, I have added it).
 
 ## 3. Inference
 
